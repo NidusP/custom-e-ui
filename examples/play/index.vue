@@ -8,8 +8,6 @@
     <el-input v-model="input" custom placeholder="请输入内容">
       <template slot="prepend">关键词</template>
     </el-input>
-
-
     <el-button type="primary">buttonCont</el-button>
     <el-button type="primary">buttonCont</el-button>
     <el-button type="primary" color-type="warning">buttonCont</el-button>
