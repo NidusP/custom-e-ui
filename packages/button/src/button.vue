@@ -5,7 +5,7 @@
     :autofocus="autofocus"
     :type="nativeType"
     :class="[
-      type === 'linear' ? '' : 'el-button',
+      type === 'linear' ? 'linear-' + colorType : 'el-button',
       type ? 'el-button--' + type : '',
       buttonSize ? 'el-button--' + buttonSize : '',
       {
@@ -54,7 +54,11 @@
       plain: Boolean,
       autofocus: Boolean,
       round: Boolean,
-      circle: Boolean
+      circle: Boolean,
+      colorType: {
+        type: String,
+        default: 'prime'
+      }
     },
 
     computed: {

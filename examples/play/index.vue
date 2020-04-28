@@ -4,16 +4,21 @@
     <el-input v-model="input" placeholder="请输入内容"></el-input>
     <el-input v-model="input" placeholder="请输入内容"></el-input>
     <el-input v-model="input" placeholder="请输入内容"></el-input>
-    <el-input v-model="input" placeholder="请输入内容"></el-input>
+    <el-input v-model="input" custom placeholder="请输入内容"></el-input>
+    <el-input v-model="input" custom placeholder="请输入内容">
+      <template slot="prepend">关键词</template>
+    </el-input>
+
+
     <el-button type="primary">buttonCont</el-button>
     <el-button type="primary">buttonCont</el-button>
-    <el-button type="primary">buttonCont</el-button>
-    <el-button type="primary">buttonCont</el-button>
-    <el-button type="primary">buttonCont</el-button>
+    <el-button type="primary" color-type="warning">buttonCont</el-button>
+    <el-button type="linear" color-type="danger">buttonCont</el-button>
+    <el-button type="linear" color-type="warning">buttonCont</el-button>
+    <el-button type="linear" color-type="warning" disabled>buttonCont</el-button>
 
     <el-button type="linear">buttonCont</el-button>
 
-    《》
   </div>
 </template>
 
