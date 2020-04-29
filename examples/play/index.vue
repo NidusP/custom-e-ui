@@ -14,8 +14,11 @@
     <el-button type="linear" color-type="danger">buttonCont</el-button>
     <el-button type="linear" color-type="warning">buttonCont</el-button>
     <el-button type="linear" color-type="warning" disabled>buttonCont</el-button>
-
     <el-button type="linear">buttonCont</el-button>
+
+    <el-select v-model="input">
+      <el-option v-for="item in option" :label="item.value" :value="item.value"></el-option>
+    </el-select>
 
   </div>
 </template>
@@ -24,7 +27,21 @@
   export default {
     data() {
       return {
-        input: 'Hello Element UI!'
+        input: 'Hello Element UI!',
+        option: [
+          {
+            label: '132',
+            value: '123'
+          },
+          {
+            label: '132',
+            value: '123'
+          },
+          {
+            label: '132',
+            value: '123'
+          }
+        ]
       };
     }
   };
