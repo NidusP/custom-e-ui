@@ -190,10 +190,7 @@
         default: false
       },
       tabindex: String,
-      custom: {
-        type: Boolean,
-        default: false
-      }
+      custom: Boolean
     },
 
     computed: {

@@ -17,11 +17,15 @@
     <el-button type="linear">buttonCont</el-button>
 
     <el-select v-model="input">
-      <el-option v-for="item in option" :label="item.value" :value="item.value"></el-option>
+      <el-option v-for="(item, index) in option" :key="index" :label="item.value" :value="item.value"></el-option>
     </el-select>
 
-    <el-select v-model="input" custom>
-      <el-option v-for="item in option" :label="item.value" :value="item.value"></el-option>
+    <el-select v-model="input" custom >
+      <el-option v-for="(item, index) in option" :key="index" :label="item.value" :value="item.value"></el-option>
+    </el-select>
+
+    <el-select v-model="input" custom filterable>
+      <el-option v-for="(item, index) in option" :key="index" :label="item.value" :value="item.value"></el-option>
     </el-select>
   </div>
 </template>
@@ -38,11 +42,11 @@
           },
           {
             label: '132',
-            value: '123'
+            value: '1234'
           },
           {
             label: '132',
-            value: '123'
+            value: '1235'
           }
         ]
       };

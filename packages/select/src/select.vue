@@ -81,6 +81,7 @@
       :validate-event="false"
       :class="{ 'is-focus': visible }"
       :tabindex="(multiple && filterable) ? '-1' : null"
+      :custom="custom"
       @focus="handleFocus"
       @blur="handleBlur"
       @keyup.native="debouncedOnInputChange"
@@ -195,7 +196,8 @@
       },
 
       iconClass() {
-        return this.remote && this.filterable ? '' : (this.visible ? 'arrow-up is-reverse' : 'arrow-up');
+        const iconStyle = this.custom ? 'caret-top' : 'arrow-up';
+        return this.remote && this.filterable ? '' : (this.visible ? iconStyle + ' is-reverse' : iconStyle);
       },
 
       debounce() {
@@ -302,7 +304,8 @@
       popperAppendToBody: {
         type: Boolean,
         default: true
-      }
+      },
+      custom: Boolean
     },
 
     data() {

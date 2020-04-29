@@ -23,7 +23,7 @@
     }
   }
 
-  .el-input__inner {
+  .el-input__inner, .el-custom__inner {
     cursor: pointer;
     padding-right: 35px;
 
@@ -32,13 +32,20 @@
     }
   }
 
-  .el-input {
+  .el-input, .el-custom-input {
     & .el-select__caret {
       color: $--select-input-color;
       font-size: $--select-input-font-size;
       transition: transform .3s;
       transform: rotateZ(180deg);
       cursor: pointer;
+      &.el-icon-caret-top {
+        font-size: 1.35em;
+        line-height: 1;
+        &:before, &:after {
+          vertical-align: middle;
+        }
+      }
 
       @include when(reverse) {
         transform: rotateZ(0deg);
@@ -73,7 +80,7 @@
     }
   }
 
-  > .el-input {
+  > .el-input, > .el-custom-input {
     display: block;
   }
 
