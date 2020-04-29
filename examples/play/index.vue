@@ -20,6 +20,9 @@
       <el-option v-for="item in option" :label="item.value" :value="item.value"></el-option>
     </el-select>
 
+    <el-select v-model="input" custom>
+      <el-option v-for="item in option" :label="item.value" :value="item.value"></el-option>
+    </el-select>
   </div>
 </template>
 
