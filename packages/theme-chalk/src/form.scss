@@ -143,9 +143,15 @@
 
   @include when(error) {
     & .el-input__inner,
+    & .el-custom__inner,
     & .el-textarea__inner {
       &, &:focus {
         border-color: $--color-danger;
+      }
+    }
+    & .el-input__tip {
+      .el-input__tip-inner {
+        color: $--color-danger;
       }
     }
     & .el-input-group__append,

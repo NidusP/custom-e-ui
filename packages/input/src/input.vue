@@ -20,6 +20,7 @@
       <div class="el-input-group__prepend" v-if="$slots.prepend">
         <slot name="prepend"></slot>
       </div>
+      <label class="el-input__label" v-if="prefixLabel">{{ prefixLabel }}</label>
       <input
         :tabindex="tabindex"
         v-if="type !== 'textarea'"
@@ -82,6 +83,10 @@
       <!-- 后置元素 -->
       <div class="el-input-group__append" v-if="$slots.append">
         <slot name="append"></slot>
+      </div>
+      <!-- 提示元素 -->
+      <div class="el-input__tip" :class="{ 'is-focused': focused || value }" v-if="$slots.tip && custom">
+        <slot name="tip"></slot>
       </div>
     </template>
     <textarea
@@ -177,6 +182,7 @@
       suffixIcon: String,
       prefixIcon: String,
       label: String,
+      prefixLabel: String,
       clearable: {
         type: Boolean,
         default: false

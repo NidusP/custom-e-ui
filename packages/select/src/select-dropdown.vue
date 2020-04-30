@@ -58,7 +58,18 @@
 
     watch: {
       '$parent.inputWidth'() {
-        this.minWidth = this.$parent.$el.getBoundingClientRect().width + 'px';
+        let $previousEle = this.$el.previousElementSibling;
+        if ($previousEle.className.includes('custom')) {
+          const childrenEle = $previousEle.children;
+          const childrenEleLength = childrenEle.length;
+          for (let i = 0; i < childrenEleLength; i++) {
+            if (childrenEle[i].className.includes('custom')) {
+              $previousEle = childrenEle[i];
+              break;
+            }
+          }
+        }
+        this.minWidth = $previousEle.getBoundingClientRect().width + 'px';
       }
     },
 

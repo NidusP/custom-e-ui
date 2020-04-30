@@ -104,6 +104,16 @@ export default {
       options.placement = this.currentPlacement;
       options.offset = this.offset;
       options.arrowOffset = this.arrowOffset;
+      if (reference.className.includes('custom')) {
+        const childrenEle = reference.children;
+        const childrenEleLength = childrenEle.length;
+        for (let i = 0; i < childrenEleLength; i++) {
+          if (childrenEle[i].className.includes('custom')) {
+            reference = childrenEle[i];
+            break;
+          }
+        }
+      }
       this.popperJS = new PopperJS(reference, popper, options);
       this.popperJS.onCreate(_ => {
         this.$emit('created', this);

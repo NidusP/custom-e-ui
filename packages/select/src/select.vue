@@ -1,46 +1,18 @@
 <template>
   <div
-    class="el-select"
-    :class="[selectSize ? 'el-select--' + selectSize : '']"
+    :class="[ custom ? 'el-custom-select' : 'el-select', selectSize ? 'el-select--' + selectSize : '']"
     @click.stop="toggleMenu"
     v-clickoutside="handleClose">
     <div
       class="el-select__tags"
       v-if="multiple"
       ref="tags"
-      :style="{ 'max-width': inputWidth - 32 + 'px', width: '100%' }">
-      <span v-if="collapseTags && selected.length">
-        <el-tag
-          :closable="!selectDisabled"
-          :size="collapseTagSize"
-          :hit="selected[0].hitState"
-          type="info"
-          @close="deleteTag($event, selected[0])"
-          disable-transitions>
-          <span class="el-select__tags-text">{{ selected[0].currentLabel }}</span>
-        </el-tag>
-        <el-tag
-          v-if="selected.length > 1"
-          :closable="false"
-          :size="collapseTagSize"
-          type="info"
-          disable-transitions>
-          <span class="el-select__tags-text">+ {{ selected.length - 1 }}</span>
-        </el-tag>
+      :style="{ 'max-width': inputWidth - 32 + 'px', width: '100%', paddingLeft: tagsPaddingLeft + 0.8 + 'em', boxSizing: 'border-box' }">
+      <span class="el-multiple-tags">
+        <template v-for="item in selected">
+          {{ item.currentLabel }};
+        </template>
       </span>
-      <transition-group @after-leave="resetInputHeight" v-if="!collapseTags">
-        <el-tag
-          v-for="item in selected"
-          :key="getValueKey(item)"
-          :closable="!selectDisabled"
-          :size="collapseTagSize"
-          :hit="item.hitState"
-          type="info"
-          @close="deleteTag($event, item)"
-          disable-transitions>
-          <span class="el-select__tags-text">{{ item.currentLabel }}</span>
-        </el-tag>
-      </transition-group>
 
       <input
         type="text"
@@ -92,7 +64,8 @@
       @keydown.native.tab="visible = false"
       @paste.native="debouncedOnInputChange"
       @mouseenter.native="inputHovering = true"
-      @mouseleave.native="inputHovering = false">
+      @mouseleave.native="inputHovering = false"
+      :prefix-label="prefixLabel">
       <template slot="prefix" v-if="$slots.prefix">
         <slot name="prefix"></slot>
       </template>
@@ -305,7 +278,8 @@
         type: Boolean,
         default: true
       },
-      custom: Boolean
+      custom: Boolean,
+      prefixLabel: String
     },
 
     data() {
@@ -331,7 +305,8 @@
         currentPlaceholder: '',
         menuVisibleOnFocus: false,
         isOnComposition: false,
-        isSilentBlur: false
+        isSilentBlur: false,
+        tagsPaddingLeft: 0
       };
     },
 
@@ -882,6 +857,7 @@
       }
       this.$nextTick(() => {
         if (reference && reference.$el) {
+          if (this.prefixLabel) this.tagsPaddingLeft = this.prefixLabel.length + 0.5;
           this.inputWidth = reference.$el.getBoundingClientRect().width;
         }
       });
