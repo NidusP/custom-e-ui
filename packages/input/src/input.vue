@@ -9,7 +9,8 @@
       'el-input-group--append': $slots.append,
       'el-input-group--prepend': $slots.prepend,
       'el-input--prefix': $slots.prefix || prefixIcon,
-      'el-input--suffix': $slots.suffix || suffixIcon || clearable || showPassword
+      'el-input--suffix': $slots.suffix || suffixIcon || clearable || showPassword,
+      'is-focused': focused || value
     }
     ]"
     @mouseenter="hovering = true"
@@ -85,9 +86,7 @@
         <slot name="append"></slot>
       </div>
       <!-- 提示元素 -->
-      <div class="el-input__tip" :class="{ 'is-focused': focused || value }" v-if="$slots.tip && custom">
-        <slot name="tip"></slot>
-      </div>
+      <slot name="tip"></slot>
     </template>
     <textarea
       v-else

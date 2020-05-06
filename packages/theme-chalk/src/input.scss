@@ -18,9 +18,11 @@
   }
   .el-custom__inner {
     width: 0;
+    min-width: 100px;
     flex: 1;
     padding: 0 .8em;
-    height: 100%;
+    height: inherit;
+    line-height: inherit;
     font-size: inherit;
     color: rgba(254, 254, 254, 1);
     border-color: #15428B;
@@ -42,33 +44,36 @@
       border-color: #3382d4;
     }*/
   }
-  .el-input__tip {
+  .el-input__tip-inner {
+    position: absolute;
+    left: .8em;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1em;
+    line-height: 1;
+    color: rgba(254, 254, 254, 0.35);
+    pointer-events: none;
+    transition: all 0.1s linear;
+    &::before {
+      content: attr(alt);
+    }
+    &.focus::before {
+      content: attr(placeholder);
+    }
+  }
+  &.is-focused {
     .el-input__tip-inner {
-      position: absolute;
-      left: .8em;
-      top: .5em;
-      font-size: 1em;
-      line-height: 1;
-      color: rgba(254, 254, 254, 0.35);
-      pointer-events: none;
-      transition: all 0.1s linear;
+      font-size: .5em;
+      left: 1.6em;
+      top: 0;
       &::before {
-        content: attr(alt);
-      }
-      &.focus::before {
         content: attr(placeholder);
       }
     }
-    &.is-focused {
-      .el-input__tip-inner {
-        font-size: .5em;
-        left: 1.6em;
-        top: -.5em;
-        &::before {
-          content: attr(placeholder);
-        }
-      }
-    }
+  }
+
+  .el-input__icon {
+    line-height: inherit;
   }
 }
 

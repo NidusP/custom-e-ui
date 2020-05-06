@@ -849,8 +849,8 @@
           small: 32,
           mini: 28
         };
-        const input = reference.$el.querySelector('input');
-        this.initialInputHeight = input.getBoundingClientRect().height || sizeMap[this.selectSize];
+        const $input = reference.$el.querySelector('input');
+        this.initialInputHeight = $input.offsetHeight || $input.getBoundingClientRect().height || sizeMap[this.selectSize];
       }
       if (this.remote && this.multiple) {
         this.resetInputHeight();

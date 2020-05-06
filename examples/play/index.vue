@@ -4,7 +4,7 @@
     <el-input v-model="input" placeholder="请输入内容"></el-input>
     <el-input v-model="input" placeholder="请输入内容"></el-input>
 
-    <el-input v-model="input" custom>
+    <el-input v-model="input" custom style="height: 40px; line-height: 40px">
       <template slot="tip">
         <label class="el-input__tip-inner" alt='请输入密码' placeholder='密码'></label>
       </template>
@@ -16,7 +16,7 @@
         <label class="tip" alt='请输入用户名' placeholder='用户名' ref="tips-user"></label>
       </el-form-item>
       <el-form-item prop="password">
-        <el-input v-model="ruleForm.password" custom>
+        <el-input v-model="ruleForm.password" custom style="height: 36px; line-height: 36px">
           <template slot="tip">
             <label class="el-input__tip-inner" alt='请输入密码' placeholder='密码'></label>
           </template>
@@ -53,7 +53,7 @@
       <el-option v-for="(item, index) in option" :key="index" :label="item.value" :value="item.value"></el-option>
     </el-select>
 
-    <el-select v-model="select" custom  :popper-append-to-body="false" multiple>
+    <el-select v-model="input" custom  :popper-append-to-body="false">
       <el-option v-for="(item, index) in option" :key="index" :label="item.value" :value="item.value"></el-option>
     </el-select>
   </div>
@@ -162,7 +162,7 @@
     }
   };
 </script>
-<style lang="scss">
+<style scoped lang="scss">
   .demo-ruleForm {
     /deep/ .el-form-item {
       margin-bottom: 30px;
