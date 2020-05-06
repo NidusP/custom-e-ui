@@ -50,7 +50,7 @@
     </el-select>
 
     <el-select v-model="select" custom prefix-label="关键词1" multiple filterable>
-      <el-option v-for="(item, index) in option" :key="index" :label="item.value" :value="item.value"></el-option>
+      <el-option v-for="(item, index) in optionEmpty" :key="index" :label="item.value" :value="item.value"></el-option>
     </el-select>
 
     <el-select v-model="input" custom  :popper-append-to-body="false">
@@ -107,7 +107,8 @@
             label: '132',
             value: '1235'
           }
-        ]
+        ],
+        optionEmpty: []
       };
     },
     methods: {

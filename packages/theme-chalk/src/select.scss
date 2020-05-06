@@ -14,7 +14,9 @@
 
   .el-multiple-tags {
     color: $--select-input-color;
-
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .el-select__input {

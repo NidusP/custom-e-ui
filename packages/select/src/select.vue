@@ -8,12 +8,7 @@
       v-if="multiple"
       ref="tags"
       :style="{ 'max-width': inputWidth - 32 + 'px', width: '100%', paddingLeft: tagsPaddingLeft + 0.8 + 'em', boxSizing: 'border-box' }">
-      <span class="el-multiple-tags">
-        <template v-for="item in selected">
-          {{ item.currentLabel }};
-        </template>
-      </span>
-
+      <span class="el-multiple-tags"><template v-for="item in selected">{{ item.currentLabel }};</template></span>
       <input
         type="text"
         class="el-select__input"
@@ -81,6 +76,7 @@
       <el-select-menu
         ref="popper"
         :append-to-body="popperAppendToBody"
+        :custom="custom"
         v-show="visible && emptyText !== false">
         <el-scrollbar
           tag="ul"

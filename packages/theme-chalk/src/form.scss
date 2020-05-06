@@ -149,8 +149,8 @@
         border-color: $--color-danger;
       }
     }
-    & .el-input__tip {
-      .el-input__tip-inner {
+    & .el-custom-input{
+      .el-input__tip-inner  {
         color: $--color-danger;
       }
     }

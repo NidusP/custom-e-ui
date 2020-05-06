@@ -60,6 +60,8 @@
     }
   }
 
+
+
   &[x-placement^="right"] {
     margin-left: #{$--popover-arrow-size + 6};
   }
@@ -96,6 +98,25 @@
       margin-left: -$--popover-arrow-size;
       border-right-width: 0;
       border-left-color: $--popover-background-color;
+    }
+  }
+
+  &.el-custom-select-dropdown {
+    &[x-placement^="top"] {
+      .popper__arrow {
+        border-top-color: #15428B;
+        &::after {
+          border-top-color: #15428B;
+        }
+      }
+    }
+    &[x-placement^="bottom"] {
+      .popper__arrow {
+        border-bottom-color: #15428B;
+        &::after {
+          border-bottom-color: #15428B;
+        }
+      }
     }
   }
 }

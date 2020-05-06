@@ -61,14 +61,20 @@
       content: attr(placeholder);
     }
   }
-  &.is-focused {
+  &.is-focused, &.is-valued {
     .el-input__tip-inner {
       font-size: .5em;
       left: 1.6em;
       top: 0;
+      color: rgba(254, 254, 254, 0.35);
       &::before {
         content: attr(placeholder);
       }
+    }
+  }
+  &.is-focused {
+    .el-input__tip-inner {
+      color: rgba(64, 158, 255, 1);
     }
   }
 

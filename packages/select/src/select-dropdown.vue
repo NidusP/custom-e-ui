@@ -1,7 +1,7 @@
 <template>
   <div
-    class="el-select-dropdown el-popper"
-    :class="[{ 'is-multiple': $parent.multiple }, popperClass]"
+    class="el-popper"
+    :class="[{ 'is-multiple': $parent.multiple }, custom ? 'el-custom-select-dropdown' : 'el-select-dropdown', popperClass]"
     :style="{ minWidth: minWidth }">
     <slot></slot>
   </div>
@@ -41,7 +41,9 @@
       appendToBody: {
         type: Boolean,
         default: true
-      }
+      },
+
+      custom: Boolean
     },
 
     data() {

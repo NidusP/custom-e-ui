@@ -2,6 +2,8 @@
   <div :class="[
     custom ? 'el-custom-input' : type === 'textarea' ? 'el-textarea' : 'el-input',
     inputSize ? 'el-input--' + inputSize : '',
+    value ? 'is-valued' : '',
+    focused ? 'is-focused' : '',
     {
       'is-disabled': inputDisabled,
       'is-exceed': inputExceed,
@@ -9,8 +11,7 @@
       'el-input-group--append': $slots.append,
       'el-input-group--prepend': $slots.prepend,
       'el-input--prefix': $slots.prefix || prefixIcon,
-      'el-input--suffix': $slots.suffix || suffixIcon || clearable || showPassword,
-      'is-focused': focused || value
+      'el-input--suffix': $slots.suffix || suffixIcon || clearable || showPassword
     }
     ]"
     @mouseenter="hovering = true"
