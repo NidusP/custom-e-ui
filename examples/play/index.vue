@@ -12,7 +12,7 @@
 
     <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" class="demo-ruleForm custom-style" :show-message="false">
       <el-form-item  prop="username">
-        <el-input name="username" v-model.number="ruleForm.username"  @focus="handleFocus" @blur="handleBlur" placeholder="asd"></el-input>
+        <el-input name="username" v-model.number="ruleForm.username" placeholder="asd"></el-input>
         <label class="tip" alt='请输入用户名' placeholder='用户名' ref="tips-user"></label>
       </el-form-item>
       <el-form-item prop="password">
@@ -23,11 +23,11 @@
         </el-input>
       </el-form-item>
       <el-form-item prop="password">
-        <el-input name="password" type="password" v-model="ruleForm.password" autocomplete="off" @keydown.13.native="submitForm" @focus="handleFocus" @blur="handleBlur"></el-input>
+        <el-input name="password" type="password" v-model="ruleForm.password" autocomplete="off"></el-input>
         <label class="tip" alt='请输入密码' placeholder='密码' ref="tips-pass"></label>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="submitForm" size="mini" :loading="doAjax">登录</el-button>
+        <el-button type="primary" size="mini" :loading="doAjax">登录</el-button>
       </el-form-item>
     </el-form>
 
@@ -110,56 +110,6 @@
         ],
         optionEmpty: []
       };
-    },
-    methods: {
-      async submitForm() {
-        const validateResult = await this.$refs['ruleForm'].validate().catch(err => { console.log(err)})
-        if (validateResult){
-          this.doAjax = true
-          const loginResult = await userLogin({ login: this.ruleForm.username, password: this.ruleForm.password }).catch(err => { console.log(err)})
-          if (loginResult && loginResult.code === 200){
-            this.userLoginState = true
-            saveLocalAuthorization(loginResult.data.accessToken)
-            const userInfoResult = await this.setUserInfo(true).catch(err => { console.log(err)})
-            if (userInfoResult && userInfoResult.code === 200) {
-              this.$message({
-                message: '登陆成功，正在进入...',
-                duration: '2000',
-                type: 'success'
-              })
-              this.$router.push({ name: 'home' })
-            }
-          } else {
-            this.$message({
-              message: loginResult instanceof Error ? '登陆失败!请检查网路。' : '登陆失败!请核对用户名或密码。',
-              duration: '1000',
-              type: 'error'
-            })
-          }
-          this.doAjax = false
-        }
-      },
-      handleFocus(event){
-        let $dom = event.target.name === 'username' ? this.$refs['tips-user'] : this.$refs['tips-pass']
-        if(event.target.parentElement.parentElement.parentElement.className.indexOf('is-error') === -1){
-          $dom.style.color = '#409EFF'
-        } else {
-          $dom.style.color = '#F56C6C'
-        }
-        $dom.style.fontSize = '12px'
-        $dom.style.transform = 'translate3d(0px, -20px, 0px)'
-        $dom.style.backgroundColor = 'transparent'
-        $dom.classList.add('top')
-      },
-      handleBlur(event){
-        let $dom = event.target.name === 'username' ? this.$refs['tips-user'] : this.$refs['tips-pass']
-        if (!this.ruleForm[event.target.name].trim()){
-          $dom.style.fontSize = '16px'
-          $dom.classList.remove('top')
-          $dom.style.transform = 'translate3d(0px, 0px, 0px)'
-        }
-        $dom.style.color = '#C0C4CC'
-      }
     }
   };
 </script>
