@@ -4,10 +4,10 @@
     @click.stop="toggleMenu"
     v-clickoutside="handleClose">
     <div
-      class="el-select__tags"
+      :class="custom ? 'el-custom-select__tags' : 'el-select__tags'"
       v-if="multiple"
       ref="tags"
-      :style="{ 'max-width': inputWidth - 32 + 'px', width: '100%', paddingLeft: tagsPaddingLeft + 0.8 + 'em', boxSizing: 'border-box' }">
+      :style="{ 'max-width': inputWidth - 28 + 'px', width: '100%', paddingLeft: tagsPaddingLeft + 0.8 + 'em', boxSizing: 'border-box' }">
       <span class="el-multiple-tags"><template v-for="item in selected">{{ item.currentLabel }};</template></span>
       <input
         type="text"
@@ -853,7 +853,7 @@
       }
       this.$nextTick(() => {
         if (reference && reference.$el) {
-          if (this.prefixLabel) this.tagsPaddingLeft = this.prefixLabel.length + 0.5;
+          if (this.prefixLabel) this.tagsPaddingLeft = this.prefixLabel.length + 0.7;
           this.inputWidth = reference.$el.getBoundingClientRect().width;
         }
       });

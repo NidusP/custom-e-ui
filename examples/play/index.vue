@@ -1,5 +1,5 @@
 <template>
-  <div style="margin: 20px; display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap; background-color: olivedrab">
+  <div style="margin: 20px; padding: 50px; display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap; background-color: olivedrab">
     <el-input v-model="input" placeholder="请输入内容" custom prefix-label="关键词213"></el-input>
     <el-input v-model="input" placeholder="请输入内容"></el-input>
     <el-input v-model="input" placeholder="请输入内容"></el-input>
@@ -49,13 +49,59 @@
       <el-option v-for="(item, index) in option" :key="index" :label="item.value" :value="item.value"></el-option>
     </el-select>
 
-    <el-select v-model="select" custom prefix-label="关键词1" multiple filterable>
-      <el-option v-for="(item, index) in optionEmpty" :key="index" :label="item.value" :value="item.value"></el-option>
-    </el-select>
-
-    <el-select v-model="input" custom  :popper-append-to-body="false">
+    <el-select v-model="select" custom multiple prefix-label="多选">
       <el-option v-for="(item, index) in option" :key="index" :label="item.value" :value="item.value"></el-option>
     </el-select>
+
+    <el-select v-model="input" custom prefix-label="关键词1" :popper-append-to-body="false">
+      <el-option v-for="(item, index) in option" :key="index" :label="item.value" :value="item.value"></el-option>
+    </el-select>
+
+    <div style="background-color: darkseagreen; color: black" v-loading.custom="locationState"
+         element-loading-text="loading"
+         element-loading-spinner="el-icon-loading"
+         element-loading-customClass="loading-blur"
+         element-loading-background="rgba(0, 0, 0, 0)">测试自定义指令loading</div>
+    <div class="block">
+      <span class="demonstration">带快捷选项</span>
+
+      <el-date-picker
+              custom
+              v-model="value2"
+              type="daterange"
+              align="right"
+              unlink-panels
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期"
+              :picker-options="pickerOptions">
+      </el-date-picker>
+    </div>
+
+    <el-table
+            :data="tableData"
+            style="width: 100%"
+            border
+            :row-class-name="tableRowClassName">
+      <el-table-column
+              prop="date"
+              label="日期"
+              width="180">
+      </el-table-column>
+      <el-table-column
+        label="信息"
+      >
+        <el-table-column
+                prop="name"
+                label="姓名"
+                width="180">
+        </el-table-column>
+        <el-table-column
+                prop="address"
+                label="地址">
+        </el-table-column>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
@@ -79,6 +125,7 @@
         }
       };
       return {
+        locationState: true,
         input: '',
         select: [],
         doAjax: '',
@@ -108,8 +155,63 @@
             value: '1235'
           }
         ],
-        optionEmpty: []
+        optionEmpty: [],
+        pickerOptions: {
+          shortcuts: [{
+            text: '最近一周',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit('pick', [start, end]);
+            }
+          }, {
+            text: '最近一个月',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+              picker.$emit('pick', [start, end]);
+            }
+          }, {
+            text: '最近三个月',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+              picker.$emit('pick', [start, end]);
+            }
+          }]
+        },
+        value2: '',
+        tableData: [{
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄',
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }, {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄',
+        }, {
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }]
       };
+    },
+    methods: {
+      tableRowClassName({row, rowIndex}) {
+        if (rowIndex === 1) {
+          return 'warning-row';
+        } else if (rowIndex === 3) {
+          return 'success-row';
+        }
+        return '';
+      }
     }
   };
 </script>
@@ -138,5 +240,12 @@
         content: attr(placeholder);
       }
     }
+  }
+  /deep/.el-table .warning-row {
+    background: #ffd069;
+  }
+
+  /deep/.el-table .success-row {
+    background: #96f98a;
   }
 </style>

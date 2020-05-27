@@ -61,6 +61,7 @@
     watch: {
       '$parent.inputWidth'() {
         let $previousEle = this.$el.previousElementSibling;
+        if (!$previousEle) return false;
         if ($previousEle.className.includes('custom')) {
           const childrenEle = $previousEle.children;
           const childrenEleLength = childrenEle.length;
