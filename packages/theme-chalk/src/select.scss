@@ -27,37 +27,42 @@
     flex: 1;
     .el-custom__inner {
       cursor: pointer;
-      padding-right: 35px;
+      padding-right: 1em;
 
       &:focus {
         border-color: $--select-input-focus-border-color;
       }
     }
-    & .el-icon-caret-top {
-      color: $--select-input-color;
-      transition: transform .3s;
-      transform: rotateZ(180deg);
-      cursor: pointer;
-      font-size: 1.35em;
-      line-height: 1;
-      &:before, &:after {
-        vertical-align: middle;
-      }
 
-      @include when(reverse) {
-        transform: rotateZ(0deg);
-      }
-
-      @include when(show-close) {
-        font-size: $--select-font-size;
-        text-align: center;
-        transform: rotateZ(180deg);
-        border-radius: $--border-radius-circle;
+    & .el-input__suffix-inner {
+      display: inline-block;
+      height: 100%;
+      .el-input__icon {
         color: $--select-input-color;
-        transition: $--color-transition-base;
+        transition: transform .3s;
+        transform: rotateZ(180deg);
+        cursor: pointer;
+        font-size: 1.35em;
+        line-height: 1;
+        &:before, &:after {
+          vertical-align: middle;
+        }
 
-        &:hover {
-          color: $--select-close-hover-color;
+        @include when(reverse) {
+          transform: rotateZ(0deg);
+        }
+
+        @include when(show-close) {
+          font-size: $--select-font-size;
+          text-align: center;
+          transform: rotateZ(180deg);
+          border-radius: $--border-radius-circle;
+          color: $--select-input-color;
+          transition: $--color-transition-base;
+
+          &:hover {
+            color: $--select-close-hover-color;
+          }
         }
       }
     }

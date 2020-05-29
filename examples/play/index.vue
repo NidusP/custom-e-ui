@@ -53,9 +53,11 @@
       <el-option v-for="(item, index) in option" :key="index" :label="item.value" :value="item.value"></el-option>
     </el-select>
 
-    <el-select v-model="input" custom prefix-label="关键词1" :popper-append-to-body="false">
-      <el-option v-for="(item, index) in option" :key="index" :label="item.value" :value="item.value"></el-option>
-    </el-select>
+    <div class="" style="font-size: 20px">
+      <el-select v-model="input" custom prefix-label="关键词1" :popper-append-to-body="false" clearable>
+        <el-option v-for="(item, index) in option" :key="index" :label="item.value" :value="item.value"></el-option>
+      </el-select>
+    </div>
 
     <div style="background-color: darkseagreen; color: black" v-loading.custom="locationState"
          element-loading-text="loading"
