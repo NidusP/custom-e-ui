@@ -104,6 +104,19 @@
         </el-table-column>
       </el-table-column>
     </el-table>
+
+    <el-button type="text" @click="dialogVisible = true">点击打开 Dialog</el-button>
+
+    <el-dialog
+            :visible.sync="dialogVisible"
+            width="30%"
+            custom-class="model-class"
+            append-to-body
+    >
+      <h4 class="title" slot="title">添加算法</h4>
+      <el-select placeholder="请选择" custom  v-model="select">
+      </el-select>
+    </el-dialog>
   </div>
 </template>
 
@@ -127,6 +140,7 @@
         }
       };
       return {
+        dialogVisible: false,
         locationState: true,
         input: '',
         select: [],
@@ -206,6 +220,13 @@
       };
     },
     methods: {
+      handleClose(done) {
+        this.$confirm('确认关闭？')
+                .then(_ => {
+                  done();
+                })
+                .catch(_ => {});
+      },
       tableRowClassName({row, rowIndex}) {
         if (rowIndex === 1) {
           return 'warning-row';
